@@ -1,0 +1,18 @@
+{
+    "name": "sudoku",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.8.0",
+        "eslint": "^9.8.0",
+        "globals": "^15.9.0",
+        "prettier": "^3.3.3",
+        "vite": "^5.4.0"
+    }
+}

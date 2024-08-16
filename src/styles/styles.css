@@ -1,6 +1,6 @@
 :root {
     --border-thick: 5px solid black;
-    --border-thin: 2px solid black;
+    --border-thin: 1px solid black;
     --border-faint: transparent;
     --background-hover: lightgray;
 }
@@ -8,6 +8,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -21,7 +22,7 @@ body {
     grid-template-columns: repeat(27, 1fr);
     grid-template-rows: repeat(27, 1fr);
     aspect-ratio: 1 / 1;
-    width: 700px;
+    width: 600px;
     max-width: 95vw;
     border: var(--border-thick);
 }
@@ -40,14 +41,35 @@ body {
     grid-template-columns: subgrid;
     grid-template-rows: subgrid;
     position: relative;
+
+    & div {
+        pointer-events: none;
+        user-select: none;
+        display: grid;
+        place-content: center;
+    }
 }
 
-.value {
+.value-entry {
     border: var(--border-thin);
     height: 100%;
     width: 100%;
     position: absolute;
     background-color: transparent;
+
+    &:hover {
+        background-color: var(--background-hover);
+        cursor: pointer;
+    }
+}
+
+.number {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    place-content: center;
+    position: absolute;
+    font-size: 3rem;
 }
 
 .pencils {
@@ -55,18 +77,10 @@ body {
     grid-area: span 3 / span 3;
     grid-template-columns: subgrid;
     grid-template-rows: subgrid;
+    font-size: 1rem;
+    z-index: 10;
 
-    & > button {
-        border: var(--border-faint);
+    & > div {
+        grid: span 1 / span 1;
     }
-}
-
-.value:hover:not(:disabled),
-.pencils > button:hover:not(:disabled) {
-    cursor: pointer;
-    background-color: var(--background-hover);
-}
-
-button:disabled {
-    pointer-events: none;
 }

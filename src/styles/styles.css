@@ -1,0 +1,72 @@
+:root {
+    --border-thick: 5px solid black;
+    --border-thin: 2px solid black;
+    --border-faint: transparent;
+    --background-hover: lightgray;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: grid;
+    place-content: center;
+    height: 100svh;
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: repeat(27, 1fr);
+    grid-template-rows: repeat(27, 1fr);
+    aspect-ratio: 1 / 1;
+    width: 700px;
+    max-width: 95vw;
+    border: var(--border-thick);
+}
+
+.box {
+    border: var(--border-thin);
+    display: grid;
+    grid-area: span 9 / span 9;
+    grid-template-columns: subgrid;
+    grid-template-rows: subgrid;
+}
+
+.cell {
+    display: grid;
+    grid-area: span 3 / span 3;
+    grid-template-columns: subgrid;
+    grid-template-rows: subgrid;
+    position: relative;
+}
+
+.value {
+    border: var(--border-thin);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: transparent;
+}
+
+.pencils {
+    display: grid;
+    grid-area: span 3 / span 3;
+    grid-template-columns: subgrid;
+    grid-template-rows: subgrid;
+
+    & > button {
+        border: var(--border-faint);
+    }
+}
+
+.value:hover:not(:disabled),
+.pencils > button:hover:not(:disabled) {
+    cursor: pointer;
+    background-color: var(--background-hover);
+}
+
+button:disabled {
+    pointer-events: none;
+}

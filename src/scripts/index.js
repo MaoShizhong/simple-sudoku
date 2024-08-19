@@ -14,3 +14,10 @@ grid.addEventListener('click', (event) => {
         }
     }
 });
+
+const numberControls = document.querySelectorAll('.controls > .values input');
+numberControls.forEach((button) => {
+    button.addEventListener('change', (event) => {
+        sudoku.currentNumber = Number(event.target.value);
+    });
+});

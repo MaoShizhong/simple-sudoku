@@ -14,6 +14,10 @@ export default class {
         this.#currentNumber = 1;
     }
 
+    set currentNumber(value) {
+        this.#currentNumber = value;
+    }
+
     setValue(row, column) {
         if (Number.isNaN(this.#currentNumber)) {
             this.#puzzle.removeNumber({ row, column });

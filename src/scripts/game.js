@@ -14,6 +14,20 @@ export default class {
         this.#currentNumber = 1;
     }
 
+    setValue(row, column) {
+        if (Number.isNaN(this.#currentNumber)) {
+            this.#puzzle.removeNumber({ row, column });
+        } else {
+            this.#puzzle.addNumber({
+                newNumber: this.#currentNumber,
+                row,
+                column,
+            });
+        }
+
+        this.#render();
+    }
+
     #render() {
         this.UI.rows.forEach((row, rowIndex) => {
             row.forEach((cell, cellIndex) => {

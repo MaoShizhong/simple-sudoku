@@ -8,12 +8,14 @@ export class UI {
         return rows;
     }
 
-    static render(puzzle) {
+    static render(puzzle, currentNumber) {
         UI.rows.forEach((row, rowIndex) => {
             row.forEach((cell, cellIndex) => {
                 const gridCell = puzzle.grid[rowIndex][cellIndex];
 
-                cell.querySelector('.number').textContent = gridCell.value;
+                const cellValue = cell.querySelector('.number');
+                cellValue.textContent = gridCell.value;
+                cellValue.dataset.number = gridCell.value;
 
                 const pencilCells = [
                     ...cell.querySelector('.pencils').children,
@@ -22,11 +24,27 @@ export class UI {
                     const pencilNumber = Number(pencilCell.dataset.number);
                     if (gridCell.pencilMarks.includes(pencilNumber)) {
                         pencilCell.textContent = pencilCell.dataset.number;
+                        pencilCell.dataset.visible = true;
                     } else {
                         pencilCell.textContent = '';
+                        pencilCell.dataset.visible = null;
                     }
                 });
             });
+        });
+
+        UI.highlightMatchingNumbers(currentNumber);
+    }
+
+    static highlightMatchingNumbers(currentNumber) {
+        const highlightedCells = document.querySelectorAll('.highlight');
+        highlightedCells.forEach((cell) => cell.classList.remove('highlight'));
+
+        const matchingNumbers = document.querySelectorAll(
+            `.cell:has(.number[data-number="${currentNumber}"]), .pencils > [data-number="${currentNumber}"][data-visible="true"]`
+        );
+        matchingNumbers.forEach((cell) => {
+            cell.classList.add('highlight');
         });
     }
 }

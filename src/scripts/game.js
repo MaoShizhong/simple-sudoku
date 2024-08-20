@@ -12,11 +12,12 @@ export default class {
         this.#isPencilMode = false;
         this.#currentNumber = 1;
 
-        UI.render(this.#puzzle);
+        UI.render(this.#puzzle, this.#currentNumber);
     }
 
     set currentNumber(value) {
         this.#currentNumber = value;
+        UI.highlightMatchingNumbers(this.#currentNumber);
     }
 
     togglePencilMode() {
@@ -45,7 +46,7 @@ export default class {
             }
         }
 
-        UI.render(this.#puzzle);
+        UI.render(this.#puzzle, this.#currentNumber);
     }
 
     amendBoardState(action) {
@@ -62,6 +63,6 @@ export default class {
             default:
                 break;
         }
-        UI.render(this.#puzzle);
+        UI.render(this.#puzzle, this.#currentNumber);
     }
 }

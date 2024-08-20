@@ -7,6 +7,8 @@
     --border-thick: 5px solid var(--color-contrast);
     --border-thin: 1px solid var(--color-contrast);
     --border-faint: transparent;
+
+    --highlight-current: #fff176;
 }
 
 * {
@@ -87,7 +89,7 @@ button:active {
 }
 
 .value-entry {
-    border: var(--border-thin);
+    border: none;
     height: 100%;
     width: 100%;
     position: absolute;
@@ -100,12 +102,14 @@ button:active {
 }
 
 .number {
+    border: var(--border-thin);
     height: 100%;
     width: 100%;
     display: grid;
     place-content: center;
     position: absolute;
     font-size: 3rem;
+    z-index: 100;
 }
 
 .pencils {
@@ -185,4 +189,8 @@ label:has(input:checked) {
 
 .divider {
     border: 1px solid var(--color-secondary);
+}
+
+.highlight {
+    background-color: var(--highlight-current);
 }

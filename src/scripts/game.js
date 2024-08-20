@@ -27,19 +27,11 @@ export default class {
 
     setValue(row, column) {
         if (this.#isPencilMode) {
-            if (Number.isNaN(this.#currentNumber)) {
-                this.#puzzle.removePencilMark({
-                    number: this.#currentNumber,
-                    row,
-                    column,
-                });
-            } else {
-                this.#puzzle.addPencilMark({
-                    number: this.#currentNumber,
-                    row,
-                    column,
-                });
-            }
+            this.#puzzle.togglePencilMark({
+                number: this.#currentNumber,
+                row,
+                column,
+            });
         } else {
             if (Number.isNaN(this.#currentNumber)) {
                 this.#puzzle.removeNumber({
@@ -54,6 +46,7 @@ export default class {
                 });
             }
         }
+        console.log(this.#isPencilMode, this.grid)
 
         this.#render();
     }

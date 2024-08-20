@@ -9,6 +9,7 @@
     --border-faint: transparent;
 
     --highlight-current: #fff176;
+    --highlight-conflict: #ff8e8e;
 }
 
 * {
@@ -193,4 +194,18 @@ label:has(input:checked) {
 
 .highlight {
     background-color: var(--highlight-current);
+}
+
+.conflict {
+    animation: 1.2s conflict;
+}
+
+@keyframes conflict {
+    from {
+        background-color: var(--highlight-conflict);
+    }
+
+    to {
+        background-color: var(--highlight-current);
+    }
 }

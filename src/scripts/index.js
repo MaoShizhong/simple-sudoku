@@ -20,7 +20,7 @@ UI.grid.addEventListener('click', (event) => {
         try {
             game.setValue(Number(row), Number(column));
         } catch {
-            // Do nothing for now
+            UI.highlightConflictingCells();
         }
     }
 });

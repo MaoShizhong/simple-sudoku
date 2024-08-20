@@ -1,10 +1,19 @@
 export class UI {
     static newGameButton = document.querySelector('#new-game');
     static grid = document.querySelector('#grid');
+    static cells = UI.grid.querySelectorAll('.cell');
     static controls = document.querySelector('.controls');
     static numberControls = UI.controls.querySelectorAll('.values input');
     static boardStateControls = UI.controls.querySelectorAll('.misc button');
     static pencilModeButton = UI.controls.querySelector('#pencil-mode');
+
+    static {
+        UI.cells.forEach((cell) => {
+            cell.addEventListener('animationend', () => {
+                cell.classList.remove('conflict');
+            });
+        });
+    }
 
     static get currentSelectedNumber() {
         const selectedNumber = [...UI.numberControls].find(
@@ -52,13 +61,26 @@ export class UI {
 
     static highlightMatchingNumbers(currentNumber) {
         const highlightedCells = document.querySelectorAll('.highlight');
-        highlightedCells.forEach((cell) => cell.classList.remove('highlight'));
+        highlightedCells.forEach((cell) => cell.classList.remove('highlight', 'conflict'));
 
         const matchingNumbers = document.querySelectorAll(
             `.cell:has(.number[data-number="${currentNumber}"]), .pencils > [data-number="${currentNumber}"][data-visible="true"]`
         );
         matchingNumbers.forEach((cell) => {
             cell.classList.add('highlight');
+        });
+    }
+
+    static highlightConflictingCells() {
+        UI.cells.forEach((cell) => {
+            const conflictingCell = cell.querySelector(
+                `.number[data-number="${UI.currentSelectedNumber}"]`
+            );
+            if (conflictingCell) {
+                cell.classList.remove('conflict');
+                // timeout to force repaint before adding class back, else no animation
+                setTimeout(() => cell.classList.add('conflict'), 0);
+            }
         });
     }
 }

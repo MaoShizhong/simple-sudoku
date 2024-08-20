@@ -38,7 +38,7 @@ export class UI {
         return rows;
     }
 
-    static render(puzzle, currentNumber) {
+    static render(puzzle, currentNumber, isInitialRender = false) {
         const placedNumbers = {};
 
         UI.rows.forEach((row, rowIndex) => {
@@ -52,6 +52,12 @@ export class UI {
                 const cellValue = cell.querySelector('.number');
                 cellValue.textContent = gridCell.value;
                 cellValue.dataset.number = gridCell.value;
+                if (isInitialRender && gridCell.value) {
+                    cellValue.classList.add('original');
+                } else if (isInitialRender) {
+                    cellValue.classList.remove('original');
+                }
+
 
                 const pencilCells = [
                     ...cell.querySelector('.pencils').children,

@@ -20,7 +20,7 @@ export default class Game {
         this.#isPencilMode = false;
         this.#currentNumber = UI.currentSelectedNumber;
 
-        UI.render(this.#puzzle, this.#currentNumber);
+        UI.render(this.#puzzle, this.#currentNumber, true);
     }
 
     set currentNumber(value) {

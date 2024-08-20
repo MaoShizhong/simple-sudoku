@@ -18,15 +18,38 @@ export default class {
         this.#currentNumber = value;
     }
 
+    togglePencilMode() {
+        this.#isPencilMode = !this.#isPencilMode;
+    }
+
     setValue(row, column) {
-        if (Number.isNaN(this.#currentNumber)) {
-            this.#puzzle.removeNumber({ row, column });
+        if (this.#isPencilMode) {
+            if (Number.isNaN(this.#currentNumber)) {
+                this.#puzzle.removePencilMark({
+                    number: this.#currentNumber,
+                    row,
+                    column,
+                });
+            } else {
+                this.#puzzle.addPencilMark({
+                    number: this.#currentNumber,
+                    row,
+                    column,
+                });
+            }
         } else {
-            this.#puzzle.addNumber({
-                newNumber: this.#currentNumber,
-                row,
-                column,
-            });
+            if (Number.isNaN(this.#currentNumber)) {
+                this.#puzzle.removeNumber({
+                    row,
+                    column,
+                });
+            } else {
+                this.#puzzle.addNumber({
+                    newNumber: this.#currentNumber,
+                    row,
+                    column,
+                });
+            }
         }
 
         this.#render();
@@ -52,8 +75,21 @@ export default class {
     #render() {
         this.UI.rows.forEach((row, rowIndex) => {
             row.forEach((cell, cellIndex) => {
-                cell.querySelector('.number').textContent =
-                    this.#puzzle.grid[rowIndex][cellIndex].value;
+                const gridCell = this.#puzzle.grid[rowIndex][cellIndex];
+
+                cell.querySelector('.number').textContent = gridCell.value;
+
+                const pencilCells = [
+                    ...cell.querySelector('.pencils').children,
+                ];
+                pencilCells.forEach((pencilCell) => {
+                    const pencilNumber = Number(pencilCell.dataset.number);
+                    if (gridCell.pencilMarks.includes(pencilNumber)) {
+                        pencilCell.textContent = pencilCell.dataset.number;
+                    } else {
+                        pencilCell.textContent = '';
+                    }
+                });
             });
         });
     }

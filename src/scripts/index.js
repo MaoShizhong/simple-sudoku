@@ -29,3 +29,8 @@ boardStateControls.forEach((button) => {
         sudoku.amendBoardState(button.id);
     });
 });
+
+const pencilModeButton = controls.querySelector('#pencil-mode');
+pencilModeButton.addEventListener('click', () => {
+    sudoku.togglePencilMode();
+});

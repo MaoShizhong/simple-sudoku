@@ -16,7 +16,7 @@ export default class Game {
     #currentNumber;
 
     constructor() {
-        this.#puzzle = new Sudoku(getNewBoard(Game.#currentDifficulty));
+        this.#puzzle = new Sudoku(getNewBoard(Game.#currentDifficulty), true);
         this.#isPencilMode = false;
         this.#currentNumber = UI.currentSelectedNumber;
 

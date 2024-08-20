@@ -17,11 +17,17 @@
     --size-pencil: calc(var(--size-cell) / 3);
 }
 
+@media (max-width: 560px) {
+    :root {
+        --size-cell: 1.8rem;
+    }
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: var(--color-contrast);
+    color: inherit;
     font-family: 'Open Sans', system-ui, sans-serif;
     font-weight: inherit;
 }
@@ -32,6 +38,7 @@ body {
     gap: 2rem;
     height: 100svh;
     background-color: var(--color-primary);
+    color: var(--color-contrast);
 }
 
 #github {
@@ -263,10 +270,4 @@ label:has(input:checked) {
     position: fixed;
     top: 1rem;
     right: 1rem;
-}
-
-@media (max-width: 560px) {
-    :root {
-        --size-cell: 1.8rem;
-    }
 }

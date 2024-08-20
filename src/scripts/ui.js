@@ -58,7 +58,6 @@ export class UI {
                     cellValue.classList.remove('original');
                 }
 
-
                 const pencilCells = [
                     ...cell.querySelector('.pencils').children,
                 ];

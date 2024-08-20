@@ -3,11 +3,13 @@ import { getNewBoard } from './starting-values';
 import { UI } from './ui';
 
 export default class Game {
-    static #currentDifficulty = 'easy';
+    static #currentDifficulty = localStorage.getItem('difficulty') ?? 'easy';
     static currentGame;
 
-    static setDifficulty(difficulty) {
-        Game.#currentDifficulty = difficulty;
+    static set difficulty(newDifficulty) {
+        console.log('first')
+        Game.#currentDifficulty = newDifficulty;
+        localStorage.setItem('difficulty', Game.#currentDifficulty);
     }
 
     #puzzle;

@@ -1,5 +1,5 @@
 export class UI {
-    static difficulty= document.querySelector('.difficulty');
+    static difficulty = document.querySelector('.difficulty');
     static newGameButton = document.querySelector('#new-game');
     static grid = document.querySelector('#grid');
     static cells = UI.grid.querySelectorAll('.cell');
@@ -8,12 +8,18 @@ export class UI {
     static boardStateControls = UI.controls.querySelectorAll('.misc button');
     static pencilModeButton = UI.controls.querySelector('#pencil-mode');
 
+    // Initialise some UI elements
     static {
         UI.cells.forEach((cell) => {
             cell.addEventListener('animationend', () => {
                 cell.classList.remove('conflict');
             });
         });
+        const localStorageDifficulty =
+            localStorage.getItem('difficulty') ?? 'easy';
+        UI.difficulty
+            .querySelector(`#${localStorageDifficulty}`)
+            .classList.add('selected');
     }
 
     static get currentSelectedNumber() {

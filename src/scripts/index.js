@@ -10,7 +10,7 @@ UI.difficulty.addEventListener('click', (event) => {
     UI.difficulty.querySelector('.selected').classList.remove('selected');
 
     event.target.classList.add('selected');
-    Game.setDifficulty(event.target.id);
+    Game.difficulty = event.target.id;
 });
 UI.newGameButton.addEventListener('click', () => {
     Game.currentGame = new Game();

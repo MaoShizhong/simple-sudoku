@@ -208,8 +208,14 @@ label,
     }
 }
 
+.completed {
+    text-decoration: line-through;
+    color: var(--color-secondary);
+}
+
 label:has(input:checked) {
     background-color: var(--color-secondary);
+    color: var(--color-primary);
 }
 
 .divider {

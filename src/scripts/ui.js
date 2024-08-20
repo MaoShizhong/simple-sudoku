@@ -39,9 +39,15 @@ export class UI {
     }
 
     static render(puzzle, currentNumber) {
+        const placedNumbers = {};
+
         UI.rows.forEach((row, rowIndex) => {
             row.forEach((cell, cellIndex) => {
                 const gridCell = puzzle.grid[rowIndex][cellIndex];
+
+                // Count the number of times each number is placed to mark when complete
+                placedNumbers[gridCell.value] =
+                    (placedNumbers[gridCell.value] ?? 0) + 1;
 
                 const cellValue = cell.querySelector('.number');
                 cellValue.textContent = gridCell.value;
@@ -64,6 +70,7 @@ export class UI {
         });
 
         UI.highlightMatchingNumbers(currentNumber);
+        UI.markCompletedNumbers(placedNumbers);
     }
 
     static highlightMatchingNumbers(currentNumber) {
@@ -91,6 +98,19 @@ export class UI {
                 setTimeout(() => cell.classList.add('conflict'), 0);
             }
         });
+    }
+
+    static markCompletedNumbers(numberCounts) {
+        for (let i = 1; i <= 9; i++) {
+            // 1-indexed loop
+            const label = UI.numberControls[i - 1].parentElement;
+            console.log(label)
+            if (numberCounts[i] === 9) {
+                label.classList.add('completed');
+            } else {
+                label.classList.remove('completed');
+            }
+        }
     }
 
     static congratulatePlayer() {

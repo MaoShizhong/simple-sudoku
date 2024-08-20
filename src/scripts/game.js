@@ -32,6 +32,23 @@ export default class {
         this.#render();
     }
 
+    amendBoardState(action) {
+        switch (action) {
+            case 'undo':
+                this.#puzzle.undo();
+                break;
+            case 'redo':
+                this.#puzzle.redo();
+                break;
+            case 'reset':
+                this.#puzzle.reset();
+                break;
+            default:
+                break;
+        }
+        this.#render();
+    }
+
     #render() {
         this.UI.rows.forEach((row, rowIndex) => {
             row.forEach((cell, cellIndex) => {

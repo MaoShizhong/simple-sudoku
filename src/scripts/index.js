@@ -15,9 +15,17 @@ grid.addEventListener('click', (event) => {
     }
 });
 
-const numberControls = document.querySelectorAll('.controls > .values input');
+const controls = document.querySelector('.controls');
+const numberControls = controls.querySelectorAll('.values input');
 numberControls.forEach((button) => {
     button.addEventListener('change', (event) => {
         sudoku.currentNumber = Number(event.target.value);
+    });
+});
+
+const boardStateControls = controls.querySelectorAll('button');
+boardStateControls.forEach((button) => {
+    button.addEventListener('click', () => {
+        sudoku.amendBoardState(button.id);
     });
 });

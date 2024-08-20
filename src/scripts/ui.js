@@ -98,15 +98,21 @@ export class UI {
         const modal = document.createElement('dialog');
         modal.id = 'congratulations';
         modal.innerHTML = `
+            <button id="close">&times;</button>
             <h2>Congratulations!</h2>
             <p>You solved the puzzle!</p>
-            <button>New game</button>
+            <button>&gt; New game &lt;</button>
         `;
 
-        modal.querySelector('button').addEventListener('click', () => {
+        modal.querySelector('#close').addEventListener('click', () => {
             modal.close();
-            UI.newGameButton.click();
         });
+        modal
+            .querySelector('button:not(#close)')
+            .addEventListener('click', () => {
+                modal.close();
+                UI.newGameButton.click();
+            });
         modal.addEventListener('close', () => {
             modal.remove();
         });

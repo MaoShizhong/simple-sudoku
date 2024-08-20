@@ -47,6 +47,10 @@ export default class {
         }
 
         UI.render(this.#puzzle, this.#currentNumber);
+
+        if (this.#isSolved) {
+            UI.congratulatePlayer();
+        }
     }
 
     amendBoardState(action) {
@@ -64,5 +68,11 @@ export default class {
                 break;
         }
         UI.render(this.#puzzle, this.#currentNumber);
+    }
+
+    get #isSolved() {
+        return this.#puzzle.grid.every((row) =>
+            row.every((cell) => cell.value)
+        );
     }
 }

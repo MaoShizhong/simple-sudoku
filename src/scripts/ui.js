@@ -61,7 +61,9 @@ export class UI {
 
     static highlightMatchingNumbers(currentNumber) {
         const highlightedCells = document.querySelectorAll('.highlight');
-        highlightedCells.forEach((cell) => cell.classList.remove('highlight', 'conflict'));
+        highlightedCells.forEach((cell) =>
+            cell.classList.remove('highlight', 'conflict')
+        );
 
         const matchingNumbers = document.querySelectorAll(
             `.cell:has(.number[data-number="${currentNumber}"]), .pencils > [data-number="${currentNumber}"][data-visible="true"]`
@@ -82,5 +84,33 @@ export class UI {
                 setTimeout(() => cell.classList.add('conflict'), 0);
             }
         });
+    }
+
+    static congratulatePlayer() {
+        setTimeout(() => {
+            const gameEndModal = this.createGameEndModal();
+            document.body.appendChild(gameEndModal);
+            gameEndModal.showModal();
+        }, 0);
+    }
+
+    static createGameEndModal() {
+        const modal = document.createElement('dialog');
+        modal.id = 'congratulations';
+        modal.innerHTML = `
+            <h2>Congratulations!</h2>
+            <p>You solved the puzzle!</p>
+            <button>New game</button>
+        `;
+
+        modal.querySelector('button').addEventListener('click', () => {
+            modal.close();
+            UI.newGameButton.click();
+        });
+        modal.addEventListener('close', () => {
+            modal.remove();
+        });
+
+        return modal;
     }
 }

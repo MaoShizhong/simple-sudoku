@@ -10,7 +10,7 @@ export default class {
     constructor(difficulty) {
         this.#puzzle = new Sudoku(getNewBoard(difficulty));
         this.#isPencilMode = false;
-        this.#currentNumber = 1;
+        this.#currentNumber = UI.currentSelectedNumber;
 
         UI.render(this.#puzzle, this.#currentNumber);
     }

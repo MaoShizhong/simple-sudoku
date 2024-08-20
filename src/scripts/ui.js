@@ -3,8 +3,15 @@ export class UI {
     static grid = document.querySelector('#grid');
     static controls = document.querySelector('.controls');
     static numberControls = UI.controls.querySelectorAll('.values input');
-    static boardStateControls = UI.controls.querySelectorAll('button');
+    static boardStateControls = UI.controls.querySelectorAll('.misc button');
     static pencilModeButton = UI.controls.querySelector('#pencil-mode');
+
+    static get currentSelectedNumber() {
+        const selectedNumber = [...UI.numberControls].find(
+            (number) => number.checked
+        );
+        return Number(selectedNumber.value);
+    }
 
     static get rows() {
         const rows = [];

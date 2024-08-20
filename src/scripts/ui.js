@@ -1,4 +1,11 @@
 export class UI {
+    static newGameButton = document.querySelector('#new-game');
+    static grid = document.querySelector('#grid');
+    static controls = document.querySelector('.controls');
+    static numberControls = UI.controls.querySelectorAll('.values input');
+    static boardStateControls = UI.controls.querySelectorAll('button');
+    static pencilModeButton = UI.controls.querySelector('#pencil-mode');
+
     static get rows() {
         const rows = [];
         for (let i = 0; i < 9; i++) {

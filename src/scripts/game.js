@@ -1,4 +1,5 @@
 import Sudoku from 'sudoku-grid-maker';
+import { getNewBoard } from './starting-values';
 import { UI } from './ui';
 
 export default class {
@@ -6,12 +7,14 @@ export default class {
     #isPencilMode;
     #currentNumber;
 
-    constructor() {
+    constructor(difficulty) {
         this.UI = new UI();
 
-        this.#puzzle = new Sudoku();
+        this.#puzzle = new Sudoku(getNewBoard(difficulty));
         this.#isPencilMode = false;
         this.#currentNumber = 1;
+
+        this.#render();
     }
 
     set currentNumber(value) {

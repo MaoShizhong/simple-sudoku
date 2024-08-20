@@ -1,36 +1,45 @@
 import '../styles/styles.css';
-import Sudoku from './game';
+import Game from './game';
 
-const sudoku = new Sudoku();
+const DIFFICULTIES = {
+    easy: 'easy',
+    medium: 'medium',
+    hard: 'hard',
+    expert: 'expert',
+};
 
+const newGameButton = document.querySelector('#new-game');
 const grid = document.querySelector('#grid');
+const controls = document.querySelector('.controls');
+const numberControls = controls.querySelectorAll('.values input');
+const boardStateControls = controls.querySelectorAll('button');
+const pencilModeButton = controls.querySelector('#pencil-mode');
+
+let game = new Game(DIFFICULTIES.easy);
+
+newGameButton.addEventListener('click', () => {
+    game = new Game(DIFFICULTIES.easy);
+});
 grid.addEventListener('click', (event) => {
     if (event.target.classList.contains('value-entry')) {
         const { row, column } = event.target.parentElement.dataset;
         try {
-            sudoku.setValue(Number(row), Number(column));
+            game.setValue(Number(row), Number(column));
         } catch {
             // Do nothing for now
         }
     }
 });
-
-const controls = document.querySelector('.controls');
-const numberControls = controls.querySelectorAll('.values input');
 numberControls.forEach((button) => {
     button.addEventListener('change', (event) => {
-        sudoku.currentNumber = Number(event.target.value);
+        game.currentNumber = Number(event.target.value);
     });
 });
-
-const boardStateControls = controls.querySelectorAll('button');
 boardStateControls.forEach((button) => {
     button.addEventListener('click', () => {
-        sudoku.amendBoardState(button.id);
+        game.amendBoardState(button.id);
     });
 });
-
-const pencilModeButton = controls.querySelector('#pencil-mode');
 pencilModeButton.addEventListener('click', () => {
-    sudoku.togglePencilMode();
+    game.togglePencilMode();
 });

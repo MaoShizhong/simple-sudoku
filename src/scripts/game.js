@@ -8,13 +8,11 @@ export default class {
     #currentNumber;
 
     constructor(difficulty) {
-        this.UI = new UI();
-
         this.#puzzle = new Sudoku(getNewBoard(difficulty));
         this.#isPencilMode = false;
         this.#currentNumber = 1;
 
-        this.#render();
+        UI.render(this.#puzzle);
     }
 
     set currentNumber(value) {
@@ -46,9 +44,8 @@ export default class {
                 });
             }
         }
-        console.log(this.#isPencilMode, this.grid)
 
-        this.#render();
+        UI.render(this.#puzzle);
     }
 
     amendBoardState(action) {
@@ -65,28 +62,6 @@ export default class {
             default:
                 break;
         }
-        this.#render();
-    }
-
-    #render() {
-        this.UI.rows.forEach((row, rowIndex) => {
-            row.forEach((cell, cellIndex) => {
-                const gridCell = this.#puzzle.grid[rowIndex][cellIndex];
-
-                cell.querySelector('.number').textContent = gridCell.value;
-
-                const pencilCells = [
-                    ...cell.querySelector('.pencils').children,
-                ];
-                pencilCells.forEach((pencilCell) => {
-                    const pencilNumber = Number(pencilCell.dataset.number);
-                    if (gridCell.pencilMarks.includes(pencilNumber)) {
-                        pencilCell.textContent = pencilCell.dataset.number;
-                    } else {
-                        pencilCell.textContent = '';
-                    }
-                });
-            });
-        });
+        UI.render(this.#puzzle);
     }
 }

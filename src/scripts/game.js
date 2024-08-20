@@ -2,13 +2,20 @@ import Sudoku from 'sudoku-grid-maker';
 import { getNewBoard } from './starting-values';
 import { UI } from './ui';
 
-export default class {
+export default class Game {
+    static #currentDifficulty = 'easy';
+    static currentGame;
+
+    static setDifficulty(difficulty) {
+        Game.#currentDifficulty = difficulty;
+    }
+
     #puzzle;
     #isPencilMode;
     #currentNumber;
 
-    constructor(difficulty) {
-        this.#puzzle = new Sudoku(getNewBoard(difficulty));
+    constructor() {
+        this.#puzzle = new Sudoku(getNewBoard(Game.#currentDifficulty));
         this.#isPencilMode = false;
         this.#currentNumber = UI.currentSelectedNumber;
 

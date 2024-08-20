@@ -53,8 +53,22 @@ body {
     }
 }
 
+.difficulty {
+    display: flex;
+    justify-content: center;
+
+    & > .selected {
+        text-decoration: underline;
+        text-underline-offset: 0.4rem;
+    }
+
+    & > :not(.selected) {
+        color: color-mix(in srgb, var(--color-secondary), grey);
+    }
+}
+
 #new-game,
-dialog button {
+:is(dialog, .difficulty) button {
     background-color: transparent;
     border: none;
     font-size: 1rem;
@@ -65,10 +79,6 @@ dialog button {
         background-color: var(--color-hover);
         cursor: pointer;
     }
-}
-
-button:active {
-    background-color: var(--color-secondary);
 }
 
 #grid {

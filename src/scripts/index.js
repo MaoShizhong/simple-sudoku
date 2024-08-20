@@ -2,23 +2,24 @@ import '../styles/styles.css';
 import Game from './game';
 import { UI } from './ui';
 
-const DIFFICULTIES = {
-    easy: 'easy',
-    medium: 'medium',
-    hard: 'hard',
-    expert: 'expert',
-};
+Game.currentGame = new Game();
 
-let game = new Game(DIFFICULTIES.easy);
+UI.difficulty.addEventListener('click', (event) => {
+    if (event.target.tagName !== 'BUTTON') return;
 
+    UI.difficulty.querySelector('.selected').classList.remove('selected');
+
+    event.target.classList.add('selected');
+    Game.setDifficulty(event.target.id);
+});
 UI.newGameButton.addEventListener('click', () => {
-    game = new Game(DIFFICULTIES.easy);
+    Game.currentGame = new Game();
 });
 UI.grid.addEventListener('click', (event) => {
     if (event.target.classList.contains('value-entry')) {
         const { row, column } = event.target.parentElement.dataset;
         try {
-            game.setValue(Number(row), Number(column));
+            Game.currentGame.setValue(Number(row), Number(column));
         } catch {
             UI.highlightConflictingCells();
         }
@@ -26,14 +27,14 @@ UI.grid.addEventListener('click', (event) => {
 });
 UI.numberControls.forEach((button) => {
     button.addEventListener('change', (event) => {
-        game.currentNumber = Number(event.target.value);
+        Game.currentGame.currentNumber = Number(event.target.value);
     });
 });
 UI.boardStateControls.forEach((button) => {
     button.addEventListener('click', () => {
-        game.amendBoardState(button.id);
+        Game.currentGame.amendBoardState(button.id);
     });
 });
 UI.pencilModeButton.addEventListener('click', () => {
-    game.togglePencilMode();
+    Game.currentGame.togglePencilMode();
 });

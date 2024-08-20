@@ -7,7 +7,6 @@ export default class Game {
     static currentGame;
 
     static set difficulty(newDifficulty) {
-        console.log('first')
         Game.#currentDifficulty = newDifficulty;
         localStorage.setItem('difficulty', Game.#currentDifficulty);
     }

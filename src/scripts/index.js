@@ -21,7 +21,8 @@ UI.grid.addEventListener('click', (event) => {
         try {
             Game.currentGame.setValue(Number(row), Number(column));
         } catch {
-            UI.highlightConflictingCells();
+            const { box } = event.target.parentElement.parentElement.dataset;
+            UI.highlightConflictingCells(row, column, box);
         }
     }
 });

@@ -87,12 +87,20 @@ export class UI {
         });
     }
 
-    static highlightConflictingCells() {
+    static highlightConflictingCells(targetRow, targetColumn, targetBox) {
         UI.cells.forEach((cell) => {
-            const conflictingCell = cell.querySelector(
+            const { row, column } = cell.dataset;
+            const { box } = cell.parentElement.dataset;
+
+            const conflictingPosition =
+                targetRow === row ||
+                targetColumn === column ||
+                targetBox === box;
+            const conflictingNumber = cell.querySelector(
                 `.number[data-number="${UI.currentSelectedNumber}"]`
             );
-            if (conflictingCell) {
+
+            if (conflictingNumber && conflictingPosition) {
                 cell.classList.remove('conflict');
                 // timeout to force repaint before adding class back, else no animation
                 setTimeout(() => cell.classList.add('conflict'), 0);
@@ -104,7 +112,6 @@ export class UI {
         for (let i = 1; i <= 9; i++) {
             // 1-indexed loop
             const label = UI.numberControls[i - 1].parentElement;
-            console.log(label)
             if (numberCounts[i] === 9) {
                 label.classList.add('completed');
             } else {

@@ -41,6 +41,18 @@ body {
     background-color: var(--color-primary);
 }
 
+#github {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    font-size: 1.5rem;
+    transition: 180ms;
+
+    &:hover {
+        transform: scale(1.2) rotate(-15deg);
+    }
+}
+
 #new-game,
 dialog button {
     background-color: transparent;

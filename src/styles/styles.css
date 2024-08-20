@@ -2,7 +2,7 @@
     --color-primary: #ffffff;
     --color-secondary: #afafaf;
     --color-contrast: #222222;
-    --color-hover: #dadada;
+    --color-hover: #a5a5a565;
 
     --border-thick: 5px solid var(--color-contrast);
     --border-thin: 1px solid var(--color-contrast);

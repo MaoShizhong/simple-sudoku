@@ -75,9 +75,11 @@ body {
     justify-self: center;
     padding: 0.5rem 0.75rem;
 
-    &:hover {
-        background-color: var(--color-hover);
-        cursor: pointer;
+    @media (pointer: fine) {
+        &:hover {
+            background-color: var(--color-hover);
+            cursor: pointer;
+        }
     }
 }
 
@@ -121,9 +123,11 @@ body {
     position: absolute;
     background-color: transparent;
 
-    &:hover {
-        background-color: var(--color-hover);
-        cursor: pointer;
+    @media (pointer: fine) {
+        &:hover {
+            background-color: var(--color-hover);
+            cursor: pointer;
+        }
     }
 }
 
@@ -203,14 +207,16 @@ label,
     display: grid;
     place-content: center;
 
-    &:hover {
-        background-color: var(--color-hover);
-        cursor: pointer;
-    }
-
     & > svg {
         width: 1.5rem;
         height: 1.5rem;
+    }
+
+    @media (pointer: fine) {
+        &:hover {
+            background-color: var(--color-hover);
+            cursor: pointer;
+        }
     }
 }
 

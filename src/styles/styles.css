@@ -5,7 +5,7 @@
 
     --grid-size: min(600px, 95vw);
 
-    --size-cell: 3rem;
+    --size-cell: 2.8rem;
     --size-pencil: calc(var(--size-cell) / 3);
 }
 

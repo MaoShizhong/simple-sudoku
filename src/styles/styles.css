@@ -1,15 +1,7 @@
 :root {
-    --color-primary: #ffffff;
-    --color-secondary: #afafaf;
-    --color-contrast: #222222;
-    --color-hover: #a5a5a565;
-
     --border-thick: 5px solid var(--color-contrast);
     --border-thin: 1px solid var(--color-contrast);
     --border-faint: transparent;
-
-    --highlight-current: #fff176;
-    --highlight-conflict: #ff8e8e;
 
     --grid-size: min(600px, 95vw);
 
@@ -41,15 +33,34 @@ body {
     color: var(--color-contrast);
 }
 
+#github,
+#theme {
+    --button-size: 1.5rem;
+}
+
 #github {
     position: fixed;
     top: 1rem;
     left: 1rem;
-    font-size: 1.5rem;
     transition: 180ms;
+    font-size: var(--button-size);
 
     &:hover {
         transform: scale(1.2) rotate(-15deg);
+    }
+}
+
+button#theme {
+    position: fixed;
+    padding: 0;
+    top: calc(1rem + 5px);
+    right: 1rem;
+    height: var(--button-size);
+    width: var(--button-size);
+
+    & > svg {
+        height: 100%;
+        width: 100%;
     }
 }
 
@@ -68,6 +79,7 @@ body {
 }
 
 #new-game,
+#theme,
 :is(dialog, .difficulty) button {
     background-color: transparent;
     border: none;

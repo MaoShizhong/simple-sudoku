@@ -1,6 +1,7 @@
 export class UI {
     static difficulty = document.querySelector('.difficulty');
     static newGameButton = document.querySelector('#new-game');
+    static themeButton = document.querySelector('#theme');
     static grid = document.querySelector('#grid');
     static cells = UI.grid.querySelectorAll('.cell');
     static controls = document.querySelector('.controls');

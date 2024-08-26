@@ -1,0 +1,19 @@
+:root[data-theme='light'] {
+    --color-primary: #f0f0f0;
+    --color-secondary: #333;
+    --color-contrast: #000;
+    --color-hover: #d3d3d3;
+
+    --highlight-current: #88bbdd;
+    --highlight-conflict: #b65555;
+}
+
+:root[data-theme='dark'] {
+    --color-primary: #0c0c0c;
+    --color-secondary: #707070;
+    --color-contrast: #bbbbbb;
+    --color-hover: #313131;
+
+    --highlight-current: #1e304d;
+    --highlight-conflict: #832424;
+}

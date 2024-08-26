@@ -1,4 +1,5 @@
 import '../styles/styles.css';
+import '../styles/themes.css';
 import Game from './game';
 import { UI } from './ui';
 
@@ -14,6 +15,10 @@ UI.difficulty.addEventListener('click', (event) => {
 });
 UI.newGameButton.addEventListener('click', () => {
     Game.currentGame = new Game();
+});
+UI.themeButton.addEventListener('click', () => {
+    const { theme } = document.documentElement.dataset;
+    document.documentElement.dataset.theme = theme === 'light' ? 'dark' : 'light';
 });
 UI.grid.addEventListener('click', (event) => {
     if (event.target.classList.contains('value-entry')) {

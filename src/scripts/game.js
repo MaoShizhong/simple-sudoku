@@ -56,31 +56,13 @@ export default class Game {
 
         UI.render(this.#puzzle, this.#currentNumber);
 
-        if (this.#isSolved) {
+        if (this.#puzzle.isSolved()) {
             UI.congratulatePlayer();
         }
     }
 
     amendBoardState(action) {
-        switch (action) {
-            case 'undo':
-                this.#puzzle.undo();
-                break;
-            case 'redo':
-                this.#puzzle.redo();
-                break;
-            case 'reset':
-                this.#puzzle.reset();
-                break;
-            default:
-                break;
-        }
+        this.#puzzle[action]?.();
         UI.render(this.#puzzle, this.#currentNumber);
-    }
-
-    get #isSolved() {
-        return this.#puzzle.grid.every((row) =>
-            row.every((cell) => cell.value)
-        );
     }
 }

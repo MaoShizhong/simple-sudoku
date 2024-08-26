@@ -17,6 +17,6 @@
     },
     "dependencies": {
         "sudoku-gen": "^1.0.2",
-        "sudoku-grid-maker": "^2.1.1"
+        "sudoku-grid-maker": "^2.2.0"
     }
 }

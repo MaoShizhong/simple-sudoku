@@ -18,17 +18,20 @@ UI.newGameButton.addEventListener('click', () => {
 });
 UI.themeButton.addEventListener('click', () => {
     const { theme } = document.documentElement.dataset;
-    document.documentElement.dataset.theme = theme === 'light' ? 'dark' : 'light';
+    document.documentElement.dataset.theme =
+        theme === 'light' ? 'dark' : 'light';
 });
 UI.grid.addEventListener('click', (event) => {
-    if (event.target.classList.contains('value-entry')) {
-        const { row, column } = event.target.parentElement.dataset;
-        try {
-            Game.currentGame.setValue(Number(row), Number(column));
-        } catch {
-            const { box } = event.target.parentElement.parentElement.dataset;
-            UI.highlightConflictingCells(row, column, box);
-        }
+    if (!event.target.classList.contains('value-entry')) {
+        return;
+    }
+
+    const { row, column } = event.target.parentElement.dataset;
+    try {
+        Game.currentGame.setValue(Number(row), Number(column));
+    } catch {
+        const { box } = event.target.parentElement.parentElement.dataset;
+        UI.highlightConflictingCells(row, column, box);
     }
 });
 UI.numberControls.forEach((button) => {

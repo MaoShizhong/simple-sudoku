@@ -233,7 +233,8 @@ label,
 }
 
 .completed {
-    text-decoration: line-through;
+    font-size: 0.9rem;
+    text-decoration: line-through 3px;
     color: var(--color-secondary);
 }
 
@@ -282,6 +283,10 @@ label:has(input:checked) {
     & > button:hover {
         background-color: color-mix(in srgb, var(--color-hover), grey);
     }
+}
+
+:root[data-theme='dark'] #congratulations::backdrop {
+    background-color: rgba(0, 0, 0, 0.664);
 }
 
 #close {

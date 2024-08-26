@@ -10,10 +10,10 @@
 
 :root[data-theme='dark'] {
     --color-primary: #0c0c0c;
-    --color-secondary: #707070;
+    --color-secondary: #505050;
     --color-contrast: #bbbbbb;
     --color-hover: #313131;
 
-    --highlight-current: #1e304d;
+    --highlight-current: #14294b;
     --highlight-conflict: #832424;
 }

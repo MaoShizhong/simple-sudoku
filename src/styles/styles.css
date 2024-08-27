@@ -1,17 +1,18 @@
 :root {
-    --border-thick: 5px solid var(--color-contrast);
+    --border-thick: 6px solid var(--color-contrast);
+    --border-medium: 2px solid var(--color-contrast);
     --border-thin: 1px solid var(--color-contrast);
-    --border-faint: transparent;
 
     --grid-size: min(600px, 95vw);
 
-    --size-cell: 2.8rem;
+    --size-cell: 2.6rem;
     --size-pencil: calc(var(--size-cell) / 3);
 }
 
 @media (max-width: 560px) {
     :root {
         --size-cell: 1.5rem;
+        --border-thick: 4px solid var(--color-contrast);
     }
 }
 
@@ -107,7 +108,7 @@ button#theme {
 }
 
 .box {
-    border: var(--border-thin);
+    border: var(--border-medium);
     display: grid;
     grid-area: span 9 / span 9;
     grid-template-columns: subgrid;

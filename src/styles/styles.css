@@ -11,7 +11,7 @@
 
 @media (max-width: 560px) {
     :root {
-        --size-cell: 1.8rem;
+        --size-cell: 1.5rem;
     }
 }
 

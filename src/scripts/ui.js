@@ -1,6 +1,5 @@
 export class UI {
     static difficulty = document.querySelector('.difficulty');
-    static newGameButton = document.querySelector('#new-game');
     static themeButton = document.querySelector('#theme');
     static grid = document.querySelector('#grid');
     static cells = UI.grid.querySelectorAll('.cell');
@@ -16,11 +15,6 @@ export class UI {
                 cell.classList.remove('conflict');
             });
         });
-        const localStorageDifficulty =
-            localStorage.getItem('difficulty') ?? 'easy';
-        UI.difficulty
-            .querySelector(`#${localStorageDifficulty}`)
-            .classList.add('selected');
     }
 
     static get currentSelectedNumber() {
@@ -126,33 +120,30 @@ export class UI {
         }
     }
 
-    static congratulatePlayer() {
+    static congratulatePlayer(puzzleDifficulty) {
+        // timeout to allow the final number to be rendered before modal
         setTimeout(() => {
-            const gameEndModal = this.createGameEndModal();
+            const gameEndModal = this.createGameEndModal(puzzleDifficulty);
             document.body.appendChild(gameEndModal);
             gameEndModal.showModal();
         }, 0);
     }
 
-    static createGameEndModal() {
+    static createGameEndModal(puzzleDifficulty) {
         const modal = document.createElement('dialog');
         modal.id = 'congratulations';
         modal.innerHTML = `
-            <button id="close">&times;</button>
             <h2>Congratulations!</h2>
             <p>You solved the puzzle!</p>
             <button>&gt; New game &lt;</button>
         `;
 
-        modal.querySelector('#close').addEventListener('click', () => {
+        modal.querySelector('button').addEventListener('click', () => {
             modal.close();
+            UI.difficulty
+                .querySelector(`[data-difficulty="${puzzleDifficulty}"]`)
+                .click();
         });
-        modal
-            .querySelector('button:not(#close)')
-            .addEventListener('click', () => {
-                modal.close();
-                UI.newGameButton.click();
-            });
         modal.addEventListener('close', () => {
             modal.remove();
         });

@@ -10,15 +10,10 @@ document.documentElement.dataset.theme =
 Game.currentGame = new Game();
 
 UI.difficulty.addEventListener('click', (event) => {
-    if (event.target.tagName !== 'BUTTON') return;
-
-    UI.difficulty.querySelector('.selected').classList.remove('selected');
-
-    event.target.classList.add('selected');
-    Game.difficulty = event.target.id;
-});
-UI.newGameButton.addEventListener('click', () => {
-    Game.currentGame = new Game();
+    if (event.target.tagName === 'BUTTON') {
+        Game.difficulty = event.target.dataset.difficulty;
+        Game.currentGame = new Game();
+    }
 });
 UI.themeButton.addEventListener('click', () => {
     const { theme } = document.documentElement.dataset;

@@ -57,7 +57,7 @@ export default class Game {
         UI.render(this.#puzzle, this.#currentNumber);
 
         if (this.#puzzle.isSolved()) {
-            UI.congratulatePlayer();
+            UI.congratulatePlayer(Game.#currentDifficulty);
         }
     }
 

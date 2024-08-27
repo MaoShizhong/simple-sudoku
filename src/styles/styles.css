@@ -64,21 +64,22 @@ button#theme {
     }
 }
 
-.difficulty {
+#new-game {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
 
-    & > .selected {
-        text-decoration: underline;
-        text-underline-offset: 0.4rem;
-    }
-
-    & > :not(.selected) {
-        color: color-mix(in srgb, var(--color-secondary), grey);
+    & > h1 {
+        font-size: 0.75rem;
     }
 }
 
-#new-game,
+.difficulty {
+    display: flex;
+    justify-content: center;
+}
+
 #theme,
 :is(dialog, .difficulty) button {
     background-color: transparent;
@@ -287,11 +288,4 @@ label:has(input:checked) {
 
 :root[data-theme='dark'] #congratulations::backdrop {
     background-color: rgba(0, 0, 0, 0.664);
-}
-
-#close {
-    font-size: 2rem;
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
 }
